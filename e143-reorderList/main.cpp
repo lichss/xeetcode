@@ -17,6 +17,42 @@ struct ListNode {
 
 
 #include <stack>
+#include <vector>
+
+/*天下武功，此乃线性表法*/
+class Solution_v{
+public:
+    void reorderList(ListNode* head){
+        std::vector<ListNode*> v;
+        ListNode* node = head;
+
+        while(node){
+            v.push_back(node);
+            node = node->next;
+        }
+        int n = v.size();
+        if(n<2)
+            return;
+        n--;    //减一个是因为size()返回的是元素数量，之后n要用作下标访问
+
+        int i=0;
+        ListNode* origin_next;
+        while(n-i > i){
+            origin_next = v[i]->next;
+            v[i]->next = v[n-i];
+            v[n-i]->next = origin_next;
+            i++;
+        }
+        (n-i)>(i) ? v[n-i]->next=nullptr:v[i]->next=nullptr;
+
+        return;
+    }
+
+
+
+};
+
+/*这是初见这题的思路。比较不好*/
 class Solution {
 public:
     void reorderList(ListNode* head) {
@@ -90,7 +126,8 @@ int printList(ListNode* head){
 }
 
 int main(){
-    Solution s;
+    // Solution s;
+    Solution_v s;
     ListNode n1;
     n1.val = 1;
     ListNode n2;
@@ -104,12 +141,16 @@ int main(){
     ListNode n6;
     n6.val = 6;
 
-    n1.next = nullptr;
+    n1.next = &n2;
     n2.next = &n3;
     n3.next = nullptr;
     n4.next = &n5;
-    n5.next = &n6;
+    n5.next = nullptr;
     n6.next = nullptr;
+
+    std::vector<int> v;
+    v.push_back(1);
+    // std::cout<<"v.size:"<<v.size()<<"\n";
 
 
 
