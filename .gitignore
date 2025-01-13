@@ -1,0 +1,80 @@
+# 忽略所有没有后缀名的文件
+*
+!*/
+
+# 取消忽略所有带后缀名的文件
+!*.*
+
+# 显式保留 .gitignore 文件
+!.gitignore
+
+### C++ ###
+# 编译生成的二进制文件和目标文件
+*.exe
+*.o
+*.obj
+*.dll
+*.lib
+*.pdb
+*.a
+*.so
+*.dylib
+
+# 编译器临时文件
+*.ilk
+*.tmp
+*.swp
+*.swo
+
+# 编译器数据库
+compile_commands.json
+
+# 构建工具生成的文件
+CMakeFiles/
+cmake_install.cmake
+CPackConfig.cmake
+CPackSourceConfig.cmake
+Makefile
+*.sln
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.user
+*.cache
+*.log
+
+# IDE 和编辑器生成的文件
+.vs/
+.vscode/
+*.idea/
+*.DS_Store
+*.project
+*.cproject
+*.workspace
+*.pydevproject
+
+# 测试和调试文件
+coverage/
+*.gcno
+*.gcda
+*.gch
+
+# 包管理工具生成的文件
+packages/
+
+# 其他可能不需要版本控制的文件
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# 日志文件
+*.log
+
+# 临时文件或备份文件
+*~
+*.bak
+*.old
+*.orig
+*.rej
+*.orig.*
