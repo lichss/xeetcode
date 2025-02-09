@@ -6,22 +6,28 @@
 
 class Solution {
 public:
-    TreeNode* invertTree(TreeNode* root) {
-        if(root == nullptr) return 0;
-        int depth = 0;
-        int curLevel_n=1, nextLevel_n=0;
+    int findBottomLeftValue(TreeNode* root) {
+        if(!root) return 0;
         std::queue<TreeNode*> qu;
+      
+        int most_left = 0;
         qu.push(root);
+        int curLevel=1;
         TreeNode* node;
-        while(!qu.empty()){
+        while(!qu.empty()) {
             node = qu.front();
             qu.pop();
-            if(node->left) qu.push(node->left);
+            
+            most_left = node->val;
             if(node->right) qu.push(node->right);
-            std::swap(node->left, node->right);
+            if(node->left) qu.push(node->left);
 
+            if(--curLevel==0) {                
+                curLevel = qu.size();
+
+            }
         }
-        return root;
+        return most_left;
     }
 };
 
