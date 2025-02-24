@@ -8,48 +8,24 @@
 class Solution {
 private:
     std::vector<std::vector<int>> combs = {};
+    std::vector<int> path;
 
-    void backt(std::vector<int> vec, std::vector<int> subCombs,int k){
-        
-        if(k==1){
-            for(auto e:vec){
-                subCombs.push_back(e);
-                combs.push_back(subCombs);
-                subCombs.pop_back();
-            }
+    void backtrack(int n,int k,int startIdx){
+        if(path.size() == k){
+            combs.push_back(path);
+            
             return;
         }
-        while(!vec.empty()){
-            subCombs.push_back(vec.back());
-            vec.pop_back();
-            backt(vec,subCombs,k-1);
-            subCombs.pop_back();            
+        for(int i = startIdx;i<=n;i++){
+            path.push_back(i);
+            backtrack(n,k,i+1);
+            path.pop_back();
         }
         return;
-
     }
-
 public:
     std::vector<std::vector<int>> combine(int n, int k) {
-        std::vector<int> vec;
-        for(int i=0;i<n;i++){
-            vec.push_back(i+1);
-        }
-        if(k==1){
-            for(auto e:vec){
-                std::vector<int> single={};
-                single.push_back(e);
-                combs.push_back(single);
-            }
-            return combs;
-        }
-        std::vector<int> subCombs = {};
-        while(!vec.empty()){
-            subCombs.clear();
-            subCombs.push_back(vec.back());
-            vec.pop_back();
-            backt(vec,subCombs,k-1);
-        }
+        backtrack(n,k,1);
         return combs;
     }
 };
