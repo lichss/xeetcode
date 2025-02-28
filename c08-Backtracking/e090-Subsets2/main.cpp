@@ -30,11 +30,12 @@ void backtrack(int startIndex){
 public:
     std::vector<std::vector<int>> subsetsWithDup(std::vector<int>& nums) {
         this->nums = nums;
-        std::sort(this->nums.begin(),this->nums.end());
+        // std::sort(this->nums.begin(),this->nums.end());
         backtrack(0);
         return combs;
     }
 };
+    
     
 int main() {
 

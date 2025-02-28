@@ -16,10 +16,7 @@ private:
 
     void backtrack(int startIndex){
 
-        // if(startIndex == nums.size()){
-        //     combs.push_back(path);
-        //     return;
-        // } 
+        
 
         int newNum;
         for(int i=startIndex;i<nums.size();i++){
