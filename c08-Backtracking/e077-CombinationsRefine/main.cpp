@@ -4,7 +4,7 @@
 #include "../../leetcodeStruct/treenode.h"
 #include <algorithm>
 // #include "../leetcodeStruct/treenode"
-
+#if 0
 class Solution {
 private:
     std::vector<std::vector<int>> combs = {};
@@ -26,6 +26,36 @@ private:
 public:
     std::vector<std::vector<int>> combine(int n, int k) {
         backtrack(n,k,1);
+        return combs;
+    }
+};
+#endif
+
+class Solution {
+private:
+    std::vector<std::vector<int>> combs;
+    std::vector<int> path;
+    int n;
+    int k;
+    void backtrack(int starIndex){
+
+        for(int i=starIndex;i<n+1;i++){
+            path.push_back(i);
+            if(path.size() == k)
+                combs.push_back(path);
+            else
+                backtrack(i+1);
+            path.pop_back();
+
+        }
+
+        return;
+    }
+public:
+    std::vector<std::vector<int>> combine(int n, int k) {
+        this->n = n;
+        this->k = k;
+        backtrack(1);
         return combs;
     }
 };
