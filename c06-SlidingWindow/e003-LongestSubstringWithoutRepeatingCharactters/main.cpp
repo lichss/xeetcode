@@ -11,6 +11,45 @@
     人生海海 山山而川
     有没有暑期实习,我只想做点自己擅长的事
 */
+
+/**
+ * reply in 2025-11-21
+ * 可能没有暑期实习，但你还是可以做一点你擅长的事情
+ */
+
+using namespace std;
+
+class Solution2 {
+public:
+    int lengthOfLongestSubstring(string s) {
+        if(s.size() <= 1)
+            return s.size();
+
+        unordered_map<char,int> hash;
+        int left=0,righ = 1;
+        int max = 1;
+        hash[s[0]] = 1;
+
+        while(righ < s.size()){
+            if(hash[s[righ]] == 0){
+                hash[s[righ]]++;
+                righ++;
+                max = std::max(righ - left,max);
+            }else{
+                while(s[righ] != s[left]){
+                    hash[s[left]] = 0;
+                    left++;
+                }
+                hash[s[left]] = 0;
+                left++;
+            }
+        }        
+        return max;
+    }
+};
+
+
+
 class Solution {
 public:
     int lengthOfLongestSubstring(std::string s) {

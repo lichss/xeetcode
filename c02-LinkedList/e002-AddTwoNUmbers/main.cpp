@@ -15,10 +15,46 @@ struct ListNode {
 class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
-        ListNode* dummy = new ListNode(0);
+        ListNode* tail = new ListNode(0);
+        tail->next = nullptr;
+        ListNode* head = nullptr;
+        ListNode* prev = tail;
+        int carry = 0;
+        while(l1 != nullptr || l2 != nullptr || carry != 0){
+            int sum = carry;
+            if(l1 != nullptr)
+                sum += l1->val;
+            if(l2 != nullptr)
+                sum += l2->val;
+            carry = sum / 10;
+            head = new ListNode(sum % 10);
+            head->next = prev;    
+        }
 
+        return head;
     }
 };
+
+// class Solution2 {
+// public:
+// ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+//     ListNode* tail = new ListNode(0);
+//     tail->next = nullptr;
+//     ListNode* head = nullptr;
+//     ListNode* prev = tail;
+//     int carry = 0;
+//     while(l1 != nullptr || l2 != nullptr || carry != 0){
+//         int sum = carry + (l1 != nullptr ? l1->val : 0) + (l2 != nullptr ? l2->val : 0);
+//         carry = sum / 10;
+//         head = new ListNode(sum % 10);
+//         head->next = prev;
+//         prev = head;
+//         if(l1 != nullptr) l1 = l1->next;
+//         if(l2 != nullptr) l2 = l2->next;
+//     }
+//     return head;
+// }
+// };
 
 int main(){
 
